@@ -26,6 +26,9 @@ COPY --from=builder /usr/lib/x86_64-linux-gnu/libjpeg* /usr/lib/x86_64-linux-gnu
 COPY --from=builder /opt/jre /opt/jre
 COPY init.sh /usr/local/bin
 
+# Modify the WebSocket server to accept all origins
+RUN sed -i "s/server\.accepted_domains = \[.*\]/server.accepted_domains = [\"*\"]/" /usr/local/bundle/gems/narou-3.9.1/lib/web/web-socket-ruby/lib/web_socket.rb
+
 ENV JAVA_HOME=/opt/jre
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
