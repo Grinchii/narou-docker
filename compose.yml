@@ -6,12 +6,12 @@ services:
       args:
         NAROU_VERSION: 3.9.1
         AOZORAEPUB3_VERSION: 1.1.1b26Q
-        UID: 1000
-        GID: 1000
+        UID: 3007
+        GID: 3003
     image: kokotaro/narou:3.9.1
     command: ["narou", "web", "-np", "33000"]
     volumes:
-      - .:/home/narou/novel:cached
+      - /mnt/DatenSSD/Daten/narou:/home/narou/novel:cached
     tty: true
     stdin_open: true
     ports:
