@@ -16,8 +16,8 @@ RUN apt update && \
 
 FROM ruby:3.3.5-slim-bookworm
 
-ARG UID=1000
-ARG GID=1000
+ARG UID=3007
+ARG GID=3003
 
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 COPY --from=builder /opt/aozoraepub3 /opt/aozoraepub3
