@@ -8,7 +8,7 @@ services:
         AOZORAEPUB3_VERSION: 1.1.1b26Q
         UID: 3007
         GID: 3003
-    image: kokotaro/narou:3.9.1
+    image: grinchy0/narou
     command: ["narou", "web", "-np", "33000"]
     volumes:
       - /mnt/DatenSSD/Daten/narou:/home/narou/novel:cached
