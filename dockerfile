@@ -11,7 +11,7 @@ RUN apt update && \
     export PATH=$PATH:$JAVA_HOME/bin && \
     jlink --no-header-files --no-man-pages --compress=2 --add-modules java.base,java.datatransfer,java.desktop --output /opt/jre && \
     # fix - tilt 2.5.0+ won't work with narou.rb #
-	gem install tilt -v 2.4.0 --no-document && \
+    gem install tilt -v 2.4.0 --no-document && \
     gem install narou -v ${NAROU_VERSION} --no-document && \
     wget https://github.com/kyukyunyorituryo/AozoraEpub3/releases/download/v${AOZORAEPUB3_VERSION}/${AOZORAEPUB3_FILE}.zip && \
     unzip ${AOZORAEPUB3_FILE} -d /opt/aozoraepub3
