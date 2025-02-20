@@ -15,6 +15,10 @@ RUN apt update && \
     gem install narou -v ${NAROU_VERSION} --no-document && \
     wget https://github.com/kyukyunyorituryo/AozoraEpub3/releases/download/v${AOZORAEPUB3_VERSION}/${AOZORAEPUB3_FILE}.zip && \
     unzip ${AOZORAEPUB3_FILE} -d /opt/aozoraepub3
+
+# kindlegen download #
+#RUN curl -LO https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz && \
+#	tar zxf kindlegen_linux_2.6_i386_v2_9.tar.gz && mv kindlegen /opt/aozoraepub3
     
 # Dirty Fix for using Title instead of ID in Mails #
 COPY pony.rb /usr/local/bundle/gems/pony-1.13.1/lib/
@@ -32,9 +36,6 @@ COPY --from=builder /lib/x86_64-linux-gnu/libjpeg* /lib/x86_64-linux-gnu/
 COPY --from=builder /usr/lib/x86_64-linux-gnu/libjpeg* /usr/lib/x86_64-linux-gnu/
 COPY --from=builder /opt/jre /opt/jre
 COPY init.sh /usr/local/bin
-
-# Modify the WebSocket server to accept all origins #
-RUN sed -i "s/server\.accepted_domains = \[.*\]/server.accepted_domains = [\"*\"]/" /usr/local/bundle/gems/narou-3.9.1/lib/web/web-socket-ruby/lib/web_socket.rb
 
 ENV JAVA_HOME=/opt/jre
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
