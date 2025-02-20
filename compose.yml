@@ -1,8 +1,6 @@
 services:
   narou:
     build:
-      context: .
-      dockerfile: dockerfile
       args:
         NAROU_VERSION: 3.9.1
         AOZORAEPUB3_VERSION: 1.1.1b30Q
@@ -12,8 +10,14 @@ services:
     command: ["narou", "web", "-np", "33000"]
     volumes:
       - /mnt/DatenSSD/Daten/narou:/home/narou/novel:cached
+    restart: unless-stopped
     tty: true
     stdin_open: true
     ports:
       - 9200:33000
       - 9201:33001
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 8000M
